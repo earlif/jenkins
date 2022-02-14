@@ -7,4 +7,11 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            mail to: 'peng_zhou@epam.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}"
+        }
+    }
 }
