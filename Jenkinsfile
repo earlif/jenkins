@@ -1,26 +1,21 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        agent any
         stage('build') {
             steps {
                 echo "build stage"
                 sh 'mvn --version'
             }
         }
-    }
-    stages {
-        agent { label "jdk11"}
         stage('test') {
+            agent { label "jdk11"}
             steps {
                 echo "test stage"
                 sh 'java --version'
             }
         }
-    }
-    stages {
-        agent { label "jdk8"}
         stage('deploy') {
+            agent { label "jdk8"}
             steps {
                 echo "deploy stage"
                 sh 'java --version'
